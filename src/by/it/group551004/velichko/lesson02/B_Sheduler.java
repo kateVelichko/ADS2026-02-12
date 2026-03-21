@@ -36,7 +36,7 @@ public class B_Sheduler {
         for (int j = 0; j < events.length - 1; j++) {
             for (int i = 0; i < events.length - 1; i++) {
                 if (events[i].stop > events[i + 1].stop) {
-                    by.it.group551004.velichko.lesson02.B_Sheduler.Event tmp = events[i];
+                    Event tmp = events[i];
                     events[i] = events[i + 1];
                     events[i + 1] = tmp;
                 }

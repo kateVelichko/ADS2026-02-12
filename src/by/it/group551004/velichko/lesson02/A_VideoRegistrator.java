@@ -48,6 +48,6 @@ public class A_VideoRegistrator {
                 }
             j = i - 1;
         }
-        return result;                        //вернем итог
+        return result;//вернем итог
     }
 }

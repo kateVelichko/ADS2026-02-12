@@ -53,7 +53,7 @@ public class C_GreedyKnapsack {
         for (int j = 0; j < items.length - 1; j++) {
             for (int i = 0; i < items.length - 1; i++) {
                 if (items[i].cost / items[i].weight > items[i + 1].cost / items[i + 1].weight) {
-                    by.it.group551004.velichko.lesson02.C_GreedyKnapsack.Item buf = items[i];
+                    Item buf = items[i];
                     items[i] = items[i + 1];
                     items[i + 1] = buf;
                 }

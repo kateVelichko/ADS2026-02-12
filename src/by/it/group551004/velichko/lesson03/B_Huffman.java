@@ -51,16 +51,39 @@ public class B_Huffman {
 
     String decode(InputStream inputStream) throws FileNotFoundException {
         StringBuilder result = new StringBuilder();
-        //прочитаем строку для кодирования из тестового файла
         Scanner scanner = new Scanner(inputStream);
-        Integer count = scanner.nextInt();
-        Integer length = scanner.nextInt();
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! НАЧАЛО ЗАДАЧИ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-        //тут запишите ваше решение
 
+        int count = scanner.nextInt();
+        int length = scanner.nextInt();
 
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! КОНЕЦ ЗАДАЧИ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-        return result.toString(); //01001100100111
+        // Массивы для кодов и символов (букв не более 26)
+        String[] codes = new String[count];
+        char[] symbols = new char[count];
+
+        // Читаем коды в формате "a: 0"
+        for (int i = 0; i < count; i++) {
+            String letter = scanner.next().replace(":", ""); // "a:" → "a"
+            codes[i] = scanner.next();                        // "0"
+            symbols[i] = letter.charAt(0);                    // 'a'
+        }
+
+        // Читаем закодированную строку
+        String encoded = scanner.next();
+
+        // Декодируем: идём по строке и ищем подходящий код
+        int pos = 0;
+        while (pos < encoded.length()) {
+            for (int i = 0; i < count; i++) {
+                // Проверяем, начинается ли подстрока с текущего кода
+                if (encoded.startsWith(codes[i], pos)) {
+                    result.append(symbols[i]);      // нашли символ
+                    pos += codes[i].length();       // прыгаем на длину кода
+                    break;                          // переходим к следующему символу
+                }
+            }
+        }
+
+        return result.toString();
     }
 
 
